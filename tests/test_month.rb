@@ -24,16 +24,16 @@ EOS
     assert_equal expected, m.to_s
   end
 
-  def test_to_s_on_jan_2017
-    m = Month.new(01, 2017)
+  def test_to_s_on_march_2017
+    m = Month.new(03, 2017)
     expected = <<EOS
-    January 2017
+     March 2017
 Su Mo Tu We Th Fr Sa
- 1  2  3  4  5  6  7
- 8  9 10 11 12 13 14
-15 16 17 18 19 20 21
-22 23 24 25 26 27 28
-29 30 31
+          1  2  3  4
+ 5  6  7  8  9 10 11
+12 13 14 15 16 17 18
+19 20 21 22 23 24 25
+26 27 28 29 30 31
 
 EOS
     assert_equal expected, m.to_s
@@ -72,5 +72,35 @@ EOS
   def test_day_count_non_leap_year_28_days
     m = Month.new(02, 1900)
     assert_equal m.day_count, 28
+  end
+
+  def test_print_days_in_month_may
+    m = Month.new(04, 2003)
+    expected = <<EOS
+     April 2003
+Su Mo Tu We Th Fr Sa
+       1  2  3  4  5
+ 6  7  8  9 10 11 12
+13 14 15 16 17 18 19
+20 21 22 23 24 25 26
+27 28 29 30
+
+EOS
+    assert_equal expected, m.print_days_in_month
+  end
+
+  def test_print_days_in_month_february_leap_year
+    m = Month.new(02, 2004)
+    expected = <<EOS
+   February 2004
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+29
+
+EOS
+    assert_equal expected, m.print_days_in_month
   end
 end
