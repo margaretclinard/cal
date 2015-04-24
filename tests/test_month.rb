@@ -53,4 +53,24 @@ EOS
     m = Month.new(12, 2009)
     assert_equal m.name, "December"
   end
+
+  def test_day_count_months_with_30_days
+    m = Month.new(11, 2009)
+    assert_equal m.day_count, 30
+  end
+
+  def test_day_count_months_with_31_days
+    m = Month.new(07, 1999)
+    assert_equal m.day_count, 31
+  end
+
+  def test_day_count_leap_year_29_days
+    m = Month.new(02, 1904)
+    assert_equal m.day_count, 29
+  end
+
+  def test_day_count_non_leap_year_28_days
+    m = Month.new(02, 1900)
+    assert_equal m.day_count, 28
+  end
 end
