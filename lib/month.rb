@@ -1,9 +1,12 @@
+require_relative 'day'
+
 class Month
   attr_reader :month, :year
 
   def initialize(month, year)
     @month = month
     @year = year
+    @first_weekday_of_month = Day.day_of_week(@month, @year)
   end
 
   WEEKDAYS = "Su Mo Tu We Th Fr Sa"
@@ -30,15 +33,29 @@ class Month
 
   def to_s
     <<EOS
-    #{name} #{year}
+#{name} #{year}
 #{WEEKDAYS}
- 1  2  3  4  5  6  7
- 8  9 10 11 12 13 14
-15 16 17 18 19 20 21
-22 23 24 25 26 27 28
-29 30 31
+#{print_days_in_month}
 
 EOS
+  end
+
+  def print_days_in_month
+    days = (1..day_count).to_a
+    days.map! do |day|
+      if day < 10
+        " " + day.to_s
+      else
+        day.to_s
+      end
+    end
+
+    (@first_weekday_of_month - 1).times do
+      placeholder_day = "  "
+      days.unshift(placeholder_day)
+    end
+
+    days.join(" ")
   end
 
 end
