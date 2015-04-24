@@ -23,4 +23,14 @@ class TestDay < Minitest::Test
     assert_equal 6, day
   end
 
+  def test_day_of_week_leap_year
+    day = Day.day_of_week(03, 2004)
+    assert_equal 2, day
+  end
+
+  def test_day_of_week_non_leap_year
+    day = Day.day_of_week(03, 2005)
+    assert_equal 3, day
+  end
+
 end
