@@ -42,10 +42,10 @@ EOS
   end
 
   def print_days_in_month
-    day_string = ""
-    days = (1..day_count).to_a
+    days_string = ""
+    days_array = (1..day_count).to_a
 
-    days.map! do |day|
+    days_array.map! do |day|
       if day < 10
         " " + day.to_s
       else
@@ -56,20 +56,36 @@ EOS
     if @first_weekday_of_month > 0
       (@first_weekday_of_month - 1).times do
         placeholder_day = "  "
-        days.unshift(placeholder_day)
+        days_array.unshift(placeholder_day)
       end
     else # This takes into account the blank spaces for Saturdays, since Saturday is 0 in Zeller's
       (@first_weekday_of_month + 6).times do
         placeholder_day = "  "
-        days.unshift(placeholder_day)
+        days_array.unshift(placeholder_day)
       end
     end
 
-    days.each_slice(7) do |a|
-      day_string << a.join(" ") + "\n"
+    days_array.each_slice(7) do |a|
+      days_string << a.join(" ") + "\n"
     end
 
-    day_string
+    # There will always be 6 rows below the days of week, regardless
+    # of how many weeks in the month; thus, the whitespace below the
+    # month is stripped when there are 6 weeks in month (i.e. size of
+    # the days array is greater than 36) and extra whitespace is added
+    # when there are 4 weeks in month (i.e. size of days array is less
+    # than or equal to 28).
+    max_days_array_size = 36
+    min_days_array_size = 28
+
+
+    if days_array.size >= max_days_array_size
+      days_string.rstrip
+    elsif days_array.size <= min_days_array_size
+      days_string + "\n"
+    else
+      days_string
+    end
   end
 
 end
