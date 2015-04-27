@@ -42,7 +42,9 @@ EOS
   end
 
   def print_days_in_month
+    day_string = ""
     days = (1..day_count).to_a
+
     days.map! do |day|
       if day < 10
         " " + day.to_s
@@ -51,12 +53,23 @@ EOS
       end
     end
 
-    (@first_weekday_of_month - 1).times do
-      placeholder_day = "  "
-      days.unshift(placeholder_day)
+    if @first_weekday_of_month > 0
+      (@first_weekday_of_month - 1).times do
+        placeholder_day = "  "
+        days.unshift(placeholder_day)
+      end
+    else # This takes into account the blank spaces for Saturdays, since Saturday is 0 in Zeller's
+      (@first_weekday_of_month + 6).times do
+        placeholder_day = "  "
+        days.unshift(placeholder_day)
+      end
     end
 
-    days.join(" ")
+    days.each_slice(7) do |a|
+      day_string << a.join(" ") + "\n"
+    end
+
+    day_string
   end
 
 end
