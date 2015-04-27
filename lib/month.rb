@@ -18,7 +18,7 @@ class Month
 
   def day_count
     months_with_30 = [9, 4, 6, 11]
-    months_with_31 = [1, 3, 5, 7, 8, 12]
+    months_with_31 = [1, 3, 5, 7, 8, 10, 12]
 
     if months_with_30.include? @month
       30
