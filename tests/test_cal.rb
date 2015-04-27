@@ -314,4 +314,49 @@ EOS
     assert_equal expected, output
   end
 
+  def test_edgecase_february_5_weeks
+    output = `./cal.rb 02 1992`
+    expected = <<EOS
+   February 1992
+Su Mo Tu We Th Fr Sa
+                   1
+ 2  3  4  5  6  7  8
+ 9 10 11 12 13 14 15
+16 17 18 19 20 21 22
+23 24 25 26 27 28 29
+
+EOS
+    assert_equal expected, output
+  end
+
+  def test_edgecase_july_6_weeks
+    output = `./cal.rb 07 2777`
+    expected = <<EOS
+     July 2777
+Su Mo Tu We Th Fr Sa
+                1  2
+ 3  4  5  6  7  8  9
+10 11 12 13 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+31
+EOS
+    assert_equal expected, output
+  end
+
+  def test_edgecase_february_4_weeks
+    output = `./cal.rb 02 2009`
+    expected = <<EOS
+   February 2009
+Su Mo Tu We Th Fr Sa
+ 1  2  3  4  5  6  7
+ 8  9 10 11 12 13 14
+15 16 17 18 19 20 21
+22 23 24 25 26 27 28
+
+
+EOS
+    assert_equal expected, output
+  end
+
 end
