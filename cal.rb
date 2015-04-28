@@ -16,5 +16,5 @@ if year > 3000 || year < 1800
   year_range_error
 else
   m = Month.new(month, year)
-  puts m
+  puts m.to_s
 end
