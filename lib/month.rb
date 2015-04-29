@@ -36,10 +36,8 @@ class Month
   end
 
   def to_s
-    month_year = <<EOS
- #{name} #{year}
-EOS
-    month_year.center(20).rstrip + "\n" + <<EOS
+    month_year = "#{name} #{year}"
+    month_year.lstrip.center(20).rstrip + "\n" + <<EOS
 #{WEEKDAYS}
 #{print_days_in_month}
 EOS
