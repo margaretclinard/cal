@@ -41,7 +41,7 @@ EOS
       elsif row[1][7]
         months_string << "#{row[0][7]}  #{row[1][7]}  #{row[2][7]}\n"
       elsif row[2][7]
-        months_string << "#{row[0][7]}  #{row[1][7]}  #{row[2][7]}\n"
+        months_string << "#{row[0][7]}  #{row[1][7]}  #{row[2][7].rjust(45)}\n"
       end
     end
 
