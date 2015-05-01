@@ -2,14 +2,13 @@ require_relative 'day'
 
 class Month
   attr_reader :month, :year
+  WEEKDAYS = "Su Mo Tu We Th Fr Sa"
 
   def initialize(month, year)
     @month = month
     @year = year
     @first_weekday_of_month = Day.day_of_week(@month, 1, @year)
   end
-
-  WEEKDAYS = "Su Mo Tu We Th Fr Sa"
 
   def name
     months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -37,7 +36,8 @@ class Month
 
   def to_s
     month_year = "#{name} #{year}"
-    month_year.lstrip.center(20).rstrip + "\n" + <<EOS
+    <<EOS
+#{month_year.lstrip.center(20).rstrip}
 #{WEEKDAYS}
 #{print_days_in_month}
 EOS
@@ -71,15 +71,8 @@ EOS
       days_string << a.join(" ") + "\n"
     end
 
-    # There will always be 6 rows below the days of week, regardless
-    # of how many weeks in the month; thus, the whitespace below the
-    # month is stripped when there are 6 weeks in month (i.e. size of
-    # the days array is greater than 36) and extra whitespace is added
-    # when there are 4 weeks in month (i.e. size of days array is less
-    # than or equal to 28).
     max_days_array_size = 36
     min_days_array_size = 28
-
 
     if days_array.size >= max_days_array_size
       days_string.rstrip

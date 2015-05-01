@@ -17,7 +17,6 @@ EOS
   end
 
   def test_display_method
-    skip
     y = Year.new(1804)
     expected = <<EOS
                              1804
