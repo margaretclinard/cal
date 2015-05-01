@@ -11,8 +11,8 @@ class Month
   end
 
   def name
-    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    months[@month - 1]
+    months = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    months[@month]
   end
 
   def leap_year?
