@@ -6,7 +6,7 @@ class Month
   def initialize(month, year)
     @month = month
     @year = year
-    @first_weekday_of_month = Day.day_of_week(@month, @year)
+    @first_weekday_of_month = Day.day_of_week(@month, 1, @year)
   end
 
   WEEKDAYS = "Su Mo Tu We Th Fr Sa"

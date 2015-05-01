@@ -9,10 +9,9 @@
 
 class Day
 
-  def self.day_of_week(month, year)
+  def self.day_of_week(month, day, year)
     m = month
     y = year
-    day = 1
 
     # NOTE: January and February are counted as months 13 and 14 of the previous year.
     m = 13 if month == 1
